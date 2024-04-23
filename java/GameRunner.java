@@ -3,7 +3,7 @@ import java.util.Random;
 public class GameRunner {
     public static void main(String[] args) {
         boolean notAWinner;
-        
+
         Game aGame = new Game();
 
         aGame.add("Chet");
@@ -13,7 +13,7 @@ public class GameRunner {
         Random rand = new Random();
 
         do {
-            aGame.roll(rand.nextInt(5) + 1);
+            aGame.rolling();
 
             if (rand.nextInt(9) == 7) {
                 notAWinner = aGame.wrongAnswer();
