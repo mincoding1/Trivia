@@ -16,7 +16,7 @@ public class Game {
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
 
-    public  Game(){
+    public Game(){
         for (int i = 0; i < 50; i++) {
             popQuestions.add("Pop Question " + i);
             scienceQuestions.add(("Science Question " + i));
@@ -34,8 +34,6 @@ public class Game {
     }
 
     public boolean add(String playerName) {
-
-
         players.add(playerName);
         places[howManyPlayers()] = 0;
         purses[howManyPlayers()] = 0;
@@ -73,7 +71,6 @@ public class Game {
             }
 
         } else {
-
             places[currentPlayer] = places[currentPlayer] + roll;
             if (places[currentPlayer] > 11) places[currentPlayer] = places[currentPlayer] - 12;
 
@@ -96,7 +93,6 @@ public class Game {
         if (currentCategory().equals("Rock"))
             System.out.println(rockQuestions.remove(0));
     }
-
 
     private String currentCategory() {
         if (places[currentPlayer] == 0) return "Pop";
@@ -131,11 +127,7 @@ public class Game {
                 if (currentPlayer == players.size()) currentPlayer = 0;
                 return true;
             }
-
-
-
         } else {
-
             System.out.println("Answer was corrent!!!!");
             purses[currentPlayer]++;
             System.out.println(players.get(currentPlayer)
@@ -160,7 +152,6 @@ public class Game {
         if (currentPlayer == players.size()) currentPlayer = 0;
         return true;
     }
-
 
     private boolean didPlayerWin() {
         return !(purses[currentPlayer] == 6);
