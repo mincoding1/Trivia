@@ -42,7 +42,9 @@ class Game:
     def how_many_players(self):
         return len(self.players)
 
-    def rolling(self, roll):
+    def rolling(self):
+        roll = randrange(6) + 1
+
         print(f'{self.players[self.current_player]} is the current player')
         print(f'They have rolled a {roll}')
 
@@ -109,6 +111,7 @@ class Game:
     def was_correctly_answered(self):
         if self.in_penalty_box[self.current_player]:
             if self.is_getting_out_of_penalty_box:
+                self.in_penalty_box[self.current_player] = False
                 print('Answer was correct!!!!')
 
                 self.purses[self.current_player] += 1
@@ -138,13 +141,18 @@ class Game:
             return winner
 
     def wrong_answer(self):
-        print('Question was incorrectly answered')
-        print(self.players[self.current_player] + ' was sent to the penalty box')
-        self.in_penalty_box[self.current_player] = True
+        if self.in_penalty_box[self.current_player]:
+            self.current_player += 1
+            if self.current_player == len(self.players): self.current_player = 0
+            return True
+        else:
+            print('Question was incorrectly answered')
+            print(self.players[self.current_player] + ' was sent to the penalty box')
+            self.in_penalty_box[self.current_player] = True
 
-        self.current_player += 1
-        if self.current_player == len(self.players): self.current_player = 0
-        return True
+            self.current_player += 1
+            if self.current_player == len(self.players): self.current_player = 0
+            return True
 
     def _did_player_win(self):
         return not (self.purses[self.current_player] == 6)
@@ -160,7 +168,7 @@ if __name__ == '__main__':
     game.add('Sue')
 
     while True:
-        game.rolling(randrange(6) + 1)
+        game.rolling()
 
         if randrange(9) == 7:
             not_a_winner = game.wrong_answer()
