@@ -33,7 +33,7 @@ bool Game::isPlayable()
 	return (howManyPlayers() >= 2);
 }
 
-bool Game::add(string playerName) 
+bool Game::add(string playerName)
 {
 	players.push_back(playerName);
 	places[howManyPlayers()] = 0;
@@ -50,8 +50,10 @@ int Game::howManyPlayers()
 	return (int)players.size();
 }
 
-void Game::roll(int roll)
+void Game::rolling() //매개변수 이름과 함수 이름이 똑같아서, roll( )---> rolling으로 변경함.
 {
+	int roll = rand() % 6 + 1; //주사위는 6면 이므로, 5--> 6으로 수정함.
+
 	cout << players[currentPlayer] << " is the current player" << endl;
 	cout << "They have rolled a " << roll << endl;
 
@@ -88,7 +90,7 @@ void Game::askQuestion()
 	if (currentCategory() == "Pop") {
 		cout << popQuestions.front() << endl;
 		popQuestions.pop_front();
-	} 
+	}
 
 	if (currentCategory() == "Science") {
 		cout << scienceQuestions.front() << endl;
@@ -125,6 +127,7 @@ bool Game::wasCorrectlyAnswered()
 {
 	if (inPenaltyBox[currentPlayer]) {
 		if (isGettingOutOfPenaltyBox) {
+			inPenaltyBox[currentPlayer] = false; //패널티박스에 탈출했다면, false로 적용해줌.
 			cout << "Answer was correct!!!!" << endl;
 			purses[currentPlayer]++;
 			cout << players[currentPlayer]
@@ -145,7 +148,7 @@ bool Game::wasCorrectlyAnswered()
 		}
 	}
 	else {
-		cout << "Answer was corrent!!!!" << endl;
+		cout << "Answer was correct!!!!" << endl; //오탈자 수정
 		purses[currentPlayer]++;
 		cout << players[currentPlayer]
 			<< " now has "
@@ -162,13 +165,20 @@ bool Game::wasCorrectlyAnswered()
 
 bool Game::wrongAnswer()
 {
-	cout << "Question was incorrectly answered" << endl;
-	cout << players[currentPlayer] + " was sent to the penalty box" << endl;
-	inPenaltyBox[currentPlayer] = true;
+	if (inPenaltyBox[currentPlayer]) { //if문 추가함. 감옥에 있는 경우, 바로 다음 턴으로 넘어감
+		currentPlayer++;
+		if (currentPlayer == players.size()) currentPlayer = 0;
+		return true;
+	}
+	else {
+		cout << "Question was incorrectly answered" << endl;
+		cout << players[currentPlayer] + " was sent to the penalty box" << endl;
+		inPenaltyBox[currentPlayer] = true;
 
-	currentPlayer++;
-	if (currentPlayer == players.size()) currentPlayer = 0;
-	return true;
+		currentPlayer++;
+		if (currentPlayer == players.size()) currentPlayer = 0;
+		return true;
+	}
 }
 
 bool Game::didPlayerWin()
