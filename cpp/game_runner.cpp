@@ -1,9 +1,9 @@
 #include "game.h"
 
-static bool notAWinner;
-
 int main()
 {
+	bool notAWinner;
+	
 	Game aGame;
 
 	aGame.add("Chet");
@@ -19,7 +19,5 @@ int main()
 		else {
 			notAWinner = aGame.wasCorrectlyAnswered();
 		}
-
 	} while (notAWinner);
-
 }
