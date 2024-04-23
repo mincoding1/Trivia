@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 public class Game {
     List<String> players = new ArrayList<String>();
@@ -48,7 +49,10 @@ public class Game {
         return players.size();
     }
 
-    public void roll(int roll) {
+    public void rolling() {
+        Random rand = new Random();
+        int roll = rand.nextInt(6) + 1;
+
         System.out.println(players.get(currentPlayer) + " is the current player");
         System.out.println("They have rolled a " + roll);
 
@@ -110,6 +114,8 @@ public class Game {
     public boolean wasCorrectlyAnswered() {
         if (inPenaltyBox[currentPlayer]){
             if (isGettingOutOfPenaltyBox) {
+                inPenaltyBox[currentPlayer] = false;
+
                 System.out.println("Answer was correct!!!!");
                 purses[currentPlayer]++;
                 System.out.println(players.get(currentPlayer)
@@ -128,7 +134,7 @@ public class Game {
                 return true;
             }
         } else {
-            System.out.println("Answer was corrent!!!!");
+            System.out.println("Answer was correct!!!!");
             purses[currentPlayer]++;
             System.out.println(players.get(currentPlayer)
                     + " now has "
@@ -144,12 +150,18 @@ public class Game {
     }
 
     public boolean wrongAnswer(){
-        System.out.println("Question was incorrectly answered");
-        System.out.println(players.get(currentPlayer)+ " was sent to the penalty box");
-        inPenaltyBox[currentPlayer] = true;
+        if (inPenaltyBox[currentPlayer]) {
+            currentPlayer++;
+            if (currentPlayer == players.size()) currentPlayer = 0;
+        }
+        else {
+            System.out.println("Question was incorrectly answered");
+            System.out.println(players.get(currentPlayer) + " was sent to the penalty box");
+            inPenaltyBox[currentPlayer] = true;
 
-        currentPlayer++;
-        if (currentPlayer == players.size()) currentPlayer = 0;
+            currentPlayer++;
+            if (currentPlayer == players.size()) currentPlayer = 0;
+        }
         return true;
     }
 
