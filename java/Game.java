@@ -115,13 +115,11 @@ public class Game {
         if (inPenaltyBox[currentPlayer]){
             if (isGettingOutOfPenaltyBox) {
                 inPenaltyBox[currentPlayer] = false;
-
                 System.out.println("Answer was correct!!!!");
+
                 purses[currentPlayer]++;
-                System.out.println(players.get(currentPlayer)
-                        + " now has "
-                        + purses[currentPlayer]
-                        + " Gold Coins.");
+                System.out.println(players.get(currentPlayer) + " now has "
+                        + purses[currentPlayer] + " Gold Coins.");
 
                 boolean winner = didPlayerWin();
                 currentPlayer++;
@@ -136,10 +134,8 @@ public class Game {
         } else {
             System.out.println("Answer was correct!!!!");
             purses[currentPlayer]++;
-            System.out.println(players.get(currentPlayer)
-                    + " now has "
-                    + purses[currentPlayer]
-                    + " Gold Coins.");
+            System.out.println(players.get(currentPlayer) + " now has "
+                    + purses[currentPlayer] + " Gold Coins.");
 
             boolean winner = didPlayerWin();
             currentPlayer++;
@@ -153,6 +149,7 @@ public class Game {
         if (inPenaltyBox[currentPlayer]) {
             currentPlayer++;
             if (currentPlayer == players.size()) currentPlayer = 0;
+            return true;
         }
         else {
             System.out.println("Question was incorrectly answered");
@@ -161,8 +158,8 @@ public class Game {
 
             currentPlayer++;
             if (currentPlayer == players.size()) currentPlayer = 0;
+            return true;
         }
-        return true;
     }
 
     private boolean didPlayerWin() {
