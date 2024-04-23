@@ -1,3 +1,5 @@
+from random import randrange
+
 class Game:
     def __init__(self):
         self.players = []
@@ -122,9 +124,6 @@ class Game:
                 self.current_player += 1
                 if self.current_player == len(self.players): self.current_player = 0
                 return True
-
-
-
         else:
             print('Answer was correct!!!!')
 
@@ -150,8 +149,6 @@ class Game:
     def _did_player_win(self):
         return not (self.purses[self.current_player] == 6)
 
-
-from random import randrange
 
 if __name__ == '__main__':
     not_a_winner = False
