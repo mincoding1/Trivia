@@ -1,3 +1,3 @@
 # Trivia
-Trivia Refactoring KATA
+Trivia Refactoring KATA <br/>
 (source : https://github.com/emilybache/trivia)
