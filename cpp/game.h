@@ -18,7 +18,7 @@ public:
 	bool add(string playerName);
 
 	int howManyPlayers();
-	void roll(int roll);
+	void rolling();
 
 	bool wasCorrectlyAnswered();
 	bool wrongAnswer();
