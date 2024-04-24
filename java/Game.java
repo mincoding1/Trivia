@@ -146,10 +146,22 @@ public class Game {
     }
 
     public boolean wrongAnswer(){
-        if (inPenaltyBox[currentPlayer]) {
-            currentPlayer++;
-            if (currentPlayer == players.size()) currentPlayer = 0;
-            return true;
+        if (inPenaltyBox[currentPlayer]){
+            if (isGettingOutOfPenaltyBox) {
+                inPenaltyBox[currentPlayer] = false;
+                System.out.println("Question was incorrectly answered");
+                System.out.println(players.get(currentPlayer) + " was sent to the penalty box");
+                inPenaltyBox[currentPlayer] = true;
+
+                currentPlayer++;
+                if (currentPlayer == players.size()) currentPlayer = 0;
+                return true;
+            }
+            else {
+                currentPlayer++;
+                if (currentPlayer == players.size()) currentPlayer = 0;
+                return true;
+            }
         }
         else {
             System.out.println("Question was incorrectly answered");
