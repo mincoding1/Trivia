@@ -132,7 +132,7 @@ bool Game::wasCorrectlyAnswered()
 
 			purses[currentPlayer]++;
 			cout << players[currentPlayer] << " now has "
-				 << purses[currentPlayer] << " Gold Coins." << endl;
+				<< purses[currentPlayer] << " Gold Coins." << endl;
 
 			bool winner = didPlayerWin();
 			currentPlayer++;
@@ -148,9 +148,10 @@ bool Game::wasCorrectlyAnswered()
 	}
 	else {
 		cout << "Answer was correct!!!!" << endl;
+
 		purses[currentPlayer]++;
 		cout << players[currentPlayer] << " now has "
-		 	 << purses[currentPlayer] << " Gold Coins." << endl;
+			<< purses[currentPlayer] << " Gold Coins." << endl;
 
 		bool winner = didPlayerWin();
 		currentPlayer++;
@@ -163,9 +164,20 @@ bool Game::wasCorrectlyAnswered()
 bool Game::wrongAnswer()
 {
 	if (inPenaltyBox[currentPlayer]) {
-		currentPlayer++;
-		if (currentPlayer == players.size()) currentPlayer = 0;
-		return true;
+		if (isGettingOutOfPenaltyBox) {
+			cout << "Question was incorrectly answered" << endl;
+			cout << players[currentPlayer] + " was sent to the penalty box" << endl;
+			inPenaltyBox[currentPlayer] = true;
+
+			currentPlayer++;
+			if (currentPlayer == players.size()) currentPlayer = 0;
+			return true;
+		}
+		else {
+			currentPlayer++;
+			if (currentPlayer == players.size()) currentPlayer = 0;
+			return true;
+		}
 	}
 	else {
 		cout << "Question was incorrectly answered" << endl;
