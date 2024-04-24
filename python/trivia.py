@@ -142,9 +142,18 @@ class Game:
 
     def wrong_answer(self):
         if self.in_penalty_box[self.current_player]:
-            self.current_player += 1
-            if self.current_player == len(self.players): self.current_player = 0
-            return True
+            if self.is_getting_out_of_penalty_box:
+                print('Question was incorrectly answered')
+                print(self.players[self.current_player] + ' was sent to the penalty box')
+                self.in_penalty_box[self.current_player] = True
+
+                self.current_player += 1
+                if self.current_player == len(self.players): self.current_player = 0
+                return True
+            else:
+                self.current_player += 1
+                if self.current_player == len(self.players): self.current_player = 0
+                return True
         else:
             print('Question was incorrectly answered')
             print(self.players[self.current_player] + ' was sent to the penalty box')
