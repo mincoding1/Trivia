@@ -7,16 +7,14 @@ using namespace std;
 Game::Game() : currentPlayer{ 0 }, places{}, purses{}
 {
 	for (int i = 0; i < 50; i++) {
-		ostringstream oss(ostringstream::out);
-		oss << "Pop Question " << i;
+		string str1 = "Pop Question " + to_string(i);
+		scienceQuestions.push_back(str1);
+		
+		string str2 = "Science Question " + to_string(i);
+		scienceQuestions.push_back(str2);
 
-		popQuestions.push_back(oss.str());
-
-		string str = "Science Question " + to_string(i);
-		scienceQuestions.push_back(str);
-
-		string str1 = "Sports Question " + to_string(i);
-		sportsQuestions.push_back(str1);
+		string str3 = "Sports Question " + to_string(i);
+		sportsQuestions.push_back(str3);
 
 		rockQuestions.push_back(createRockQuestion(i));
 	}
