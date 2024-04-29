@@ -7,7 +7,7 @@ Game::Game() : currentPlayer{ 0 }, places{}, purses{}
 {
 	for (int i = 0; i < 50; i++) {
 		string str1 = "Pop Question " + to_string(i);
-		scienceQuestions.push_back(str1);
+		popQuestions.push_back(str1);
 		
 		string str2 = "Science Question " + to_string(i);
 		scienceQuestions.push_back(str2);
