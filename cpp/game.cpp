@@ -33,9 +33,9 @@ bool Game::isPlayable()
 bool Game::add(string playerName)
 {
 	players.push_back(playerName);
-	places[howManyPlayers()] = 0;
-	purses[howManyPlayers()] = 0;
-	inPenaltyBox[howManyPlayers()] = false;
+	places[howManyPlayers() - 1] = 0;
+	purses[howManyPlayers() - 1] = 0;
+	inPenaltyBox[howManyPlayers() - 1] = false;
 
 	cout << playerName << " was added" << endl;
 	cout << "They are player number " << players.size() << endl;
