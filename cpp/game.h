@@ -1,6 +1,5 @@
-#ifndef GAME_H_
-#define GAME_H_
-
+#pragma once
+#define interface struct
 #include <iostream>
 #include <list>
 #include <vector>
@@ -9,41 +8,13 @@
 using std::string;
 using std::list;
 using std::vector;
+using std::to_string;
+using std::cout;
+using std::endl;
 
-class Game {
-public:
-	Game();
-
-	string createRockQuestion(int index);
-	bool isPlayable();
-	bool add(string playerName);
-
-	int howManyPlayers();
-	void rolling();
-
-	bool wasCorrectlyAnswered();
-	bool wrongAnswer();
-
-
-private:
-	vector<string> players;
-
-	int places[6];
-	int purses[6];
-
-	bool inPenaltyBox[6];
-
-	list<string> popQuestions;
-	list<string> scienceQuestions;
-	list<string> sportsQuestions;
-	list<string> rockQuestions;
-
-	int currentPlayer;
-	bool isGettingOutOfPenaltyBox;
-
-	void askQuestion();
-	string currentCategory();
-	bool didPlayerWin();
+interface IGame {
+	virtual bool add(string player) = 0;
+	virtual void rolling() = 0;
+	virtual bool wasCorrectlyAnswered() = 0;
+	virtual bool wrongAnswer() = 0;
 };
-
-#endif /* GAME_H_ */
