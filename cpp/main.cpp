@@ -1,7 +1,6 @@
-#include "game.h"
+#include "game.cpp"
 
-int main()
-{
+int main() {
 	bool notAWinner;
 
 	Game aGame;
@@ -20,4 +19,6 @@ int main()
 			notAWinner = aGame.wasCorrectlyAnswered();
 		}
 	} while (notAWinner);
+
+	return 0;
 }
