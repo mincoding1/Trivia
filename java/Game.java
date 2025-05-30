@@ -3,7 +3,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class Game {
+public class Game implements IGame {
     List<String> players = new ArrayList<String>();
     int[] places = new int[6];
     int[] purses  = new int[6];
