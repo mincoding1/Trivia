@@ -57,7 +57,7 @@ class Game:
                 if self.places[self.current_player] > 11:
                     self.places[self.current_player] = self.places[self.current_player] - 12
 
-                print(f'{self.players[self.current_player]}\'s new location is ',
+                print(f'{self.players[self.current_player]}\'s new location is '
                       f'{self.places[self.current_player]}')
 
                 print(f'The category is {self._current_category}')
@@ -70,7 +70,7 @@ class Game:
             if self.places[self.current_player] > 11:
                 self.places[self.current_player] = self.places[self.current_player] - 12
 
-            print(f'{self.players[self.current_player]}\'s new location is ',
+            print(f'{self.players[self.current_player]}\'s new location is '
                   f'{self.places[self.current_player]}')
 
             print(f'The category is {self._current_category}')
@@ -115,7 +115,7 @@ class Game:
                 print('Answer was correct!!!!')
 
                 self.purses[self.current_player] += 1
-                print(f'{self.players[self.current_player]} now has ',
+                print(f'{self.players[self.current_player]} now has '
                       f'{self.purses[self.current_player]} Gold Coins.')
 
                 winner = self._did_player_win()
